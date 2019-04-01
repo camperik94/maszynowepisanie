@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pisanie maszynowe</title>
+    <style>
+        div {
+            font-family: roboto;
+            max-width: 80%;
+            margin: 20px auto;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .cursor {
+            opacity: 0;
+
+        }
+
+        .cursor.active {
+            opacity: 1;
+            transition: .2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="text"></span>
+        <span class="cursor">|</span>
+    </div>
+
+    <script>
+        const spanText = document.querySelector('.text');
+        const spanCursor = document.querySelector('.cursor');
+        const txt =
+            "    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione omnis fuga repellendus libero nobis soluta a ullam est in magni doloribus placeat assumenda, nesciunt consequatur culpa, eaque at et minus.";
+        let indexText = 0;
+        const addLetter = () => {
+            spanText.textContent += txt[indexText];
+            indexText++;
+            if (indexText === txt.length) {
+                clearInterval(indexTyping);
+            }
+        }
+
+        const cursorAnimation = () => {
+            spanCursor.classList.toggle('active');
+        }
+        const indexTyping = setInterval(addLetter, 50);
+        setInterval(cursorAnimation, 400);
+    </script>
+</body>
+
+</html>
